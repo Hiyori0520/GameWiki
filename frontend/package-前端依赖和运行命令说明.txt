@@ -1,0 +1,9 @@
+【对应文件】
+package.json
+
+【文件用途】
+声明前端包信息、npm 脚本与依赖范围。
+
+【具体实现】
+- 用 dev、build、preview 分别启动 Vite 开发服务、生成构建产物和预览产物。
+- 区分 Vue、Axios、界面组件、图表和 Markdown 等运行依赖与 Vite、Vue 插件等开发依赖。

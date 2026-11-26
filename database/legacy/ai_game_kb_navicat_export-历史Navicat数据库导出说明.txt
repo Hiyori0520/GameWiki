@@ -1,0 +1,9 @@
+【对应文件】
+ai_game_kb_navicat_export.sql
+
+【文件用途】
+记录项目早期数据库结构和部分演示记录。
+
+【具体实现】
+- 保存 Navicat 生成的 DROP、CREATE 和 INSERT 语句，包含旧版分类、攻略、游戏、装备及用户结构。
+- 可用于追溯历史字段和演示数据来源。当前基础数据库脚本为 database/00_init.sql。

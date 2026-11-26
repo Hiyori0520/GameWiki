@@ -1,0 +1,8 @@
+【对应文件】
+LoginRequest.java
+
+【文件用途】
+从 JSON 请求体接收账号和密码。
+
+【具体实现】
+- 将 username、password 声明为字符串并分别加 @NotBlank，控制器用 @Valid 在认证前执行校验。

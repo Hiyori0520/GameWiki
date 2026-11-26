@@ -1,0 +1,9 @@
+【对应文件】
+GameGuideMapper.java
+
+【文件用途】
+为 GameGuide 提供数据库读写能力。
+
+【具体实现】
+- 继承 BaseMapper<GameGuide>，通过实体映射获得按 ID 查询、条件查询、计数和写入等操作。
+- 由 MyBatis 扫描生成代理，供攻略服务构建条件和分页。

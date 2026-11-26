@@ -1,0 +1,9 @@
+【对应文件】
+AiHistoryController.java
+
+【文件用途】
+读取和删除当前用户的历史会话。
+
+【具体实现】
+- 从 UserContext 取得用户 ID，按用户和 sessionId 查询 ai_chat_log。
+- 会话列表生成摘要和最后消息时间，详情按顺序返回会话消息，删除操作限定在当前用户的记录内。

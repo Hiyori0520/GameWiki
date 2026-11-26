@@ -1,0 +1,9 @@
+【对应文件】
+BasicDataController.java
+
+【文件用途】
+支持早期管理端维护游戏字典和装备数值。
+
+【具体实现】
+- 按关键词查询游戏或装备，游戏查询在游戏 Mapper 层排除已删除的目录记录，删除游戏时委托 CatalogGameService，装备读写通过 GameItemStatsMapper。
+- 保存接口按是否有 ID 选择新增或更新，删除接口按 ID 操作并返回 Result。

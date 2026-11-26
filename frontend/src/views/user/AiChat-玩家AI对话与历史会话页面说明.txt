@@ -1,0 +1,9 @@
+【对应文件】
+AiChat.vue
+
+【文件用途】
+处理玩家向知识库提问、流式回答和会话历史。
+
+【具体实现】
+- 带 Authorization 请求 /api/ai/chat/stream，从响应流解析 session、chunk、done、error，逐步更新 Markdown 消息。
+- 从会话接口读取或删除历史记录，用加载状态控制发送按钮，并在请求或流式输出失败时显示错误。

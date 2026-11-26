@@ -1,0 +1,53 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: gamewiki-backend
+
+  # 本地私有配置（数据库账号密码、AI Key）放在 application-local.yml
+  # 该文件已被 .gitignore 排除，不会进入仓库。新成员请执行：
+  #   cp src/main/resources/application-local.yml.example src/main/resources/application-local.yml
+  # 然后填入自己的数据库密码与 API Key
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:database/02_shared_catalog.sql
+        - classpath:database/03_verified_game_catalog.sql
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      database: 0
+      timeout: 5000ms
+
+# 数据库连接与 AI 模型配置见 application-local.yml（含敏感信息，不入库）
+
+# MyBatis-Plus 日志与驼峰映射配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+# Knife4j 接口文档配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn

@@ -1,0 +1,9 @@
+【对应文件】
+application-local.yml.example
+
+【文件用途】
+为开发者提供本机所需的私有配置结构。
+
+【具体实现】
+- 把示例复制为 application-local.yml 后，按实际 MySQL 端口填写连接配置。
+- Spring AI 配置项描述 OpenAI 兼容服务地址、模型名和密钥占位符，由个人环境提供真实参数。

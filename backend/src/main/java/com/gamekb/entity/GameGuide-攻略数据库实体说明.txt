@@ -1,0 +1,9 @@
+【对应文件】
+GameGuide.java
+
+【文件用途】
+将攻略记录映射到 game_guide 表。
+
+【具体实现】
+- 使用 @TableName 与自增主键映射，字段保存攻略编号、关联游戏、作者、Markdown 正文、审核状态、版本和时间。
+- 由 GameGuideMapper 执行实体读写，攻略服务管理状态和更新流程。

@@ -1,0 +1,9 @@
+【对应文件】
+PageResult.java
+
+【文件用途】
+用 records、total、page、size 表达列表分页结果。
+
+【具体实现】
+- of(IPage) 映射 MyBatis-Plus 分页对象的记录和计数。
+- 另一重载接收已有列表，根据页号和页大小切片后构造同一响应结构。

@@ -1,0 +1,8 @@
+【对应文件】
+vite.config.js
+
+【文件用途】
+配置 Vue 单文件组件构建和开发时联调代理。
+
+【具体实现】
+- 通过 defineConfig 装配 Vue 插件，将 /api 与 /catalog 请求转发到本机后端 8081 端口。

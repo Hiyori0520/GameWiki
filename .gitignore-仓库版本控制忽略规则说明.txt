@@ -1,0 +1,9 @@
+【对应文件】
+.gitignore
+
+【文件用途】
+集中管理 Git 应忽略的构建目录、编辑器文件和本地配置。
+
+【具体实现】
+- 用目录和通配规则匹配 node_modules、dist、target、IDE 配置及日志。
+- 忽略 .env 家族和本地 Spring 配置，并用 !.env.example 为环境变量示例保留提交入口。

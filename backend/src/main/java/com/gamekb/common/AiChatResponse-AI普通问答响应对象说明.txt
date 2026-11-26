@@ -1,0 +1,9 @@
+【对应文件】
+AiChatResponse.java
+
+【文件用途】
+承载一次普通 AI 问答返回给调用者的数据。
+
+【具体实现】
+- 用 sessionId 返回或延续会话，用 reply 承载完整回答。
+- AiAgentService 完成模型调用和保存问答后构造该对象，控制器将它放入 Result 的 data 字段。

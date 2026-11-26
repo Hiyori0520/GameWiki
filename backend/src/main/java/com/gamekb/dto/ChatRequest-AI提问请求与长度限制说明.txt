@@ -1,0 +1,9 @@
+【对应文件】
+ChatRequest.java
+
+【文件用途】
+统一普通与流式问答的输入结构。
+
+【具体实现】
+- 用可选 sessionId 标识要继续的会话，question 承载提问。
+- 问题字段由 @NotBlank 和 @Size 校验，提问长度上限为 500 字符。

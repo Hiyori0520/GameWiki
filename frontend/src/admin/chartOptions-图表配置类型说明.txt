@@ -1,0 +1,9 @@
+【对应文件】
+chartOptions.ts
+
+【用途说明】
+定义管理端共用的 ECharts 配置类型 ECOption，覆盖折线图、饼图、坐标网格、图例和提示框。
+
+【具体实现】
+- 从 echarts/core 引入 ComposeOption，将折线、饼图、网格、图例和提示框的配置类型合成 ECOption。
+- 图表组件和页面用同一类型约束配置对象。

@@ -1,0 +1,9 @@
+【对应文件】
+AuthConst.java
+
+【文件用途】
+统一登录、登出和拦截器使用的令牌约定。
+
+【具体实现】
+- 定义 Authorization 请求头及 12 小时有效期。
+- tokenKey 将传入令牌拼接到 kb:user:token: 前缀上，供 Redis 读写使用。

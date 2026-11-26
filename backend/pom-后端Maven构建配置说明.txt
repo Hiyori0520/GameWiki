@@ -1,0 +1,9 @@
+【对应文件】
+pom.xml
+
+【文件用途】
+声明后端模块的编译、依赖和打包方式。
+
+【具体实现】
+- 继承 Spring Boot 3.3.5 父 POM，以 Java 17 编译，导入 Spring AI BOM，并配置 Web、MyBatis-Plus、Redis、MySQL、测试和接口文档依赖。
+- 将共享目录 SQL 和指定前端素材映射到后端类路径资源，由 Spring Boot Maven 插件提供运行和打包入口。

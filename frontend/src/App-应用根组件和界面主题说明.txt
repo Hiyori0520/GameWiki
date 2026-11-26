@@ -1,0 +1,9 @@
+【对应文件】
+App.vue
+
+【文件用途】
+在根组件统一设置 Ant Design Vue 的深色界面。
+
+【具体实现】
+- 读取根元素 --gw-* CSS 变量，构造主色、表面、边框和文本色 token。
+- ConfigProvider 将深色算法与 token 传给路由页面及挂载在其他 DOM 位置的下拉菜单。

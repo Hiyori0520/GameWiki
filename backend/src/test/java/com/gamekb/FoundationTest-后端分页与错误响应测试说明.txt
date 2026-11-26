@@ -1,0 +1,9 @@
+【对应文件】
+FoundationTest.java
+
+【文件用途】
+验证后端基础设施的关键行为。
+
+【具体实现】
+- 用 @SpringBootTest 启动应用上下文，通过种子攻略记录检查真实 SQL 分页和 PageResult 字段。
+- 另外验证 PageQuery 的页号和大小边界，以及 BizException 到 Result 业务错误码的转换。

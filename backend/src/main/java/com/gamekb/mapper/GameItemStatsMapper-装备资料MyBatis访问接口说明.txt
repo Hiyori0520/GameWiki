@@ -1,0 +1,8 @@
+【对应文件】
+GameItemStatsMapper.java
+
+【文件用途】
+读写 game_item_stats 对应的装备实体。
+
+【具体实现】
+- 通过 BaseMapper<GameItemStats> 提供按 ID 和条件查询等操作，装备接口及 AI 查询工具构建各自的筛选条件。

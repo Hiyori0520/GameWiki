@@ -1,0 +1,9 @@
+【对应文件】
+ai-tactics-api.yaml
+
+【文件用途】
+以 OpenAPI 格式记录早期战术问答接口设计。
+
+【具体实现】
+- 在 paths 下声明 /api/ai/tactics/question 的请求和响应并嵌入示例。
+- 当前实现的入口可对照 AiAgentController.java，普通问答和流式问答分别位于 /api/ai/chat 和 /api/ai/chat/stream。

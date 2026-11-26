@@ -1,0 +1,8 @@
+【对应文件】
+JacksonConfig.java
+
+【文件用途】
+统一 JSON 中 LocalDateTime 的输入和输出格式。
+
+【具体实现】
+- 定义 yyyy-MM-dd HH:mm:ss 格式，通过 Jackson2ObjectMapperBuilderCustomizer 装配序列化和反序列化处理。

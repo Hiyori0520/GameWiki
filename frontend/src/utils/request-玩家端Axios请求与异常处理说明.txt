@@ -1,0 +1,9 @@
+【对应文件】
+request.js
+
+【文件用途】
+将认证请求头、业务错误和登录过期处理集中到一个客户端。
+
+【具体实现】
+- 通过 VITE_API_BASE_URL 或相对地址创建 Axios 实例，并从 localStorage 读取令牌加入 Authorization。
+- 响应拦截器判断业务码，识别 401 时清理登录状态并跳转，其他异常通过 Element Plus 消息提示反馈。

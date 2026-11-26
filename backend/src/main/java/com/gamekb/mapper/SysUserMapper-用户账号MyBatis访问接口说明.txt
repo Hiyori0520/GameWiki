@@ -1,0 +1,8 @@
+【对应文件】
+SysUserMapper.java
+
+【文件用途】
+为认证和后台业务访问 sys_user 提供 MyBatis 接口。
+
+【具体实现】
+- 继承 BaseMapper<SysUser>，用于按 ID 或用户名查用户，以及注册、状态和密码更新等实体操作。

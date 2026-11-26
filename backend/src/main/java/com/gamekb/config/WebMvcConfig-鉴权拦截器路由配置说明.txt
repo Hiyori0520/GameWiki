@@ -1,0 +1,8 @@
+【对应文件】
+WebMvcConfig.java
+
+【文件用途】
+定义项目在哪些 MVC 路径执行登录检查。
+
+【具体实现】
+- 向 InterceptorRegistry 注册 AuthInterceptor，并在配置中声明受保护的 API 匹配模式与例外路径。

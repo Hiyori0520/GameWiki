@@ -1,0 +1,438 @@
+.game-library {
+  --gutter: clamp(16px, 3.2vw, 64px);
+  --text: var(--gw-text);
+  --muted: var(--gw-muted);
+  --accent: var(--gw-accent);
+  --control-border: var(--gw-border);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--gw-bg);
+  color-scheme: dark;
+}
+
+.game-library main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.library-container {
+  box-sizing: border-box;
+  width: min(100% - 2 * var(--gutter), 1580px);
+  margin-inline: auto;
+}
+
+.library-nav {
+  height: 39px;
+  padding-inline: max(calc(var(--gutter) + 26px), calc((100% - 1528px) / 2));
+  background: var(--gw-nav);
+  border-bottom-color: #789af14a;
+}
+
+.library-nav :deep(.nav-left) { gap: clamp(24px, 3.45vw, 50px); }
+.library-nav :deep(.links) { gap: clamp(18px, 2.4vw, 36px); }
+.library-nav :deep(.links a) {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 39px;
+  padding-bottom: 0;
+}
+.library-nav :deep(.links a.active) {
+  border-bottom-color: #646eff;
+  text-shadow: 0 0 10px #9096ff;
+  font-weight: 700;
+}
+.library-nav :deep(.nav-right) { font-size: 12px; }
+.library-nav :deep(.avatar) { width: 25px; height: 25px; }
+
+.library-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 194px;
+  border-bottom: 1px solid #668cdc42;
+  background-color: #142347;
+  background-image:
+    linear-gradient(90deg, var(--gw-bg) 10%, #132451f5 35%, #152b60bc 51%, #172e642a 78%, #10285b43),
+    url('../../assets/admin/sakura-banner.jpg');
+  background-size: cover, auto 100%;
+  background-position: center, calc(50% + 210px) center;
+  background-repeat: no-repeat;
+}
+
+.library-hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url('../../assets/library/starlight.webp') center 39% / cover;
+  mask-image: linear-gradient(90deg, transparent 22%, #000b 44%, #0009 51%, transparent 65%);
+  content: '';
+}
+
+.hero-content { padding: 16px 26px 29px; }
+
+.hero-content h1 {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0;
+  font-size: clamp(32px, 2.6vw, 40px);
+  line-height: 1.25;
+}
+.hero-content h1 svg,
+.result-heading h2 svg {
+  color: #c4b7ff;
+  filter: drop-shadow(0 0 9px #8773ffb3);
+}
+.hero-content p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+
+.library-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px clamp(20px, 4vw, 62px);
+  margin: 32px 0 0;
+}
+
+.library-stat {
+  display: grid;
+  grid-template-columns: 28px auto;
+  grid-template-areas: 'icon value' 'icon label';
+  align-items: center;
+  column-gap: 15px;
+  min-width: 100px;
+}
+
+.library-stat > svg,
+.library-stat > .anticon { grid-area: icon; color: var(--accent); font-size: 25px; }
+.library-stat dt { grid-area: label; color: var(--muted); font-size: 13px; }
+.library-stat dd { grid-area: value; margin: 0; font-size: 18px; line-height: 1.25; font-weight: 700; }
+
+.library-body {
+  isolation: isolate;
+  position: relative;
+  flex: 1;
+  overflow: clip;
+  padding: 14px 0 88px;
+  background:
+    radial-gradient(ellipse at 98% 100%, #45307c7d, transparent 24%),
+    radial-gradient(ellipse at 68% 46%, var(--gw-surface), transparent 65%),
+    var(--gw-bg);
+}
+
+.library-body::before {
+  position: absolute;
+  z-index: -1;
+  bottom: -100px;
+  left: -6%;
+  width: 86%;
+  height: 152px;
+  border: 1px solid #8172df65;
+  border-radius: 50%;
+  box-shadow: 0 -9px 0 -8px #574feb87, 0 -17px 0 -16px #8f67ec5c;
+  transform: rotate(3deg);
+  content: '';
+}
+
+.library-body::after {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  width: min(430px, 62vw);
+  height: 177px;
+  background: url('../../assets/admin/sakura-tower.jpg') right bottom / 100% 202px no-repeat;
+  mask-image: radial-gradient(ellipse at 96% 100%, black 29%, #000b 46%, transparent 73%);
+  content: '';
+}
+
+:where(.game-library) :where(button, input, select) { font: inherit; }
+
+.game-library :focus-visible {
+  outline: 2px solid #e1d6ff;
+  outline-offset: 3px;
+}
+
+.filter-panel {
+  display: grid;
+  grid-template: 'search category tags submit' auto / minmax(190px, 1fr) auto minmax(0, 1.25fr) auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 100px;
+  box-sizing: border-box;
+  padding: 16px 17px 16px 19px;
+  border: 1px solid #cebaff;
+  border-radius: 19px;
+  background: linear-gradient(115deg, #263965, #1a284d 47%, #292d58);
+  box-shadow: inset 0 0 22px #826bff70, 0 0 9px #7e76f241, 0 0 0 1px #a6a3ff39;
+}
+
+.search-field {
+  grid-area: search;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  height: 42px;
+  padding: 0 19px;
+  border: 1px solid #d1bfff;
+  border-radius: 30px;
+  background: #111e3d8c;
+  box-shadow: 0 0 0 1px #b3a0f24a, 0 0 13px #7563f44d;
+}
+
+.search-field > .anticon, .search-button > .anticon { font-size: 18px; }
+.search-field:focus-within { box-shadow: 0 0 0 2px #d1bfff, 0 0 15px #7563f478; }
+
+.search-field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  background: transparent;
+  font-size: 14px;
+}
+.search-field input:focus-visible { outline: none; }
+.search-field input::placeholder { color: #c1cbe2; opacity: 1; }
+
+.filter-group {
+  min-width: 0;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-inline-start: 18px;
+  border-inline-start: 1px solid #8ca6ee39;
+}
+.category-filter { grid-area: category; }
+.tag-filter { grid-area: tags; }
+.filter-label { display: inline-flex; align-items: center; gap: 9px; flex: none; font-size: 14px; font-weight: 700; }
+.filter-label .anticon { color: var(--accent); font-size: 21px; }
+
+.select-control { position: relative; min-width: 0; }
+.select-control select {
+  appearance: none;
+  width: clamp(96px, 7vw, 126px);
+  max-width: 100%;
+  height: 31px;
+  padding: 0 26px 0 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid #8c91ee8c;
+  border-radius: 20px;
+  background: linear-gradient(#34447e, #2e3972);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+}
+.select-control option { background: var(--gw-surface-raised); }
+.select-control > .anticon { position: absolute; right: 11px; top: 10px; font-size: 11px; pointer-events: none; }
+
+.tag-options,
+.tag-popup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid #7790dc6b;
+  border-radius: 20px;
+  background: #27375b;
+  color: #e4eaff;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tag:hover { border-color: #b4aaff; }
+.tag[aria-pressed="true"],
+.tag.selected {
+  background: linear-gradient(120deg, #4872ef, #6558f3);
+  border-color: #8b89ff;
+  color: white;
+  box-shadow: 0 0 10px #655df670;
+}
+.more-tags { min-width: 35px; padding-inline: 8px; }
+
+:global(.el-popper.game-library-tag-popup) {
+  --el-bg-color-overlay: var(--gw-surface-raised);
+  --el-border-color-light: #7188d47d;
+  color: var(--gw-text);
+}
+
+.search-button {
+  grid-area: submit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid #d0c1ff;
+  border-radius: 30px;
+  background: radial-gradient(ellipse at 28% 20%, #7970ff, transparent 75%), linear-gradient(100deg, var(--gw-primary), var(--gw-violet));
+  box-shadow: inset 0 0 10px #e3dcff8c, 0 0 11px #7666ff80;
+  color: white;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.search-button:hover { filter: brightness(1.16); }
+
+.library-results { margin: 36px 6px 0; }
+.list-toolbar, .toolbar-controls { display: flex; align-items: center; }
+.list-toolbar { justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+
+.result-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 0;
+  line-height: 1.25;
+  font-size: 24px;
+}
+.result-heading p { margin: 3px 0 0; font-size: 14px; color: var(--muted); }
+.text-button { border: 0; background: transparent; color: #b6cbff; text-decoration: underline; cursor: pointer; }
+.toolbar-controls { flex-wrap: wrap; gap: 12px clamp(12px, 2vw, 32px); }
+
+.segmented {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid #6d83bc42;
+  border-radius: 10px;
+  background: #121d34bd;
+}
+
+.segmented button,
+.pagination button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  min-height: 32px;
+  padding: 0 12px;
+  color: #e1e8f7;
+  background: transparent;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.segmented button:hover { background: #2a3e63; }
+.segmented button[aria-pressed="true"] {
+  border-color: #756df2a1;
+  background: linear-gradient(140deg, #394d99, #5559d8);
+  box-shadow: inset 0 -2px 5px #9f84ff3b;
+  color: white;
+}
+.view-switch button { min-width: 38px; padding: 0; font-size: 17px; }
+.view-switch button[aria-pressed="true"],
+.pagination button[aria-current="page"] { background: var(--gw-primary-hover); color: white; border-color: #7886ff68; }
+
+.game-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 19px;
+}
+.game-results.list-mode { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.game-results[aria-busy="true"] { opacity: .72; }
+
+.empty-state {
+  padding: 62px 18px;
+  border: 1px solid var(--control-border);
+  border-radius: 16px;
+  text-align: center;
+  background: #1b2b4e;
+  color: var(--muted);
+}
+.empty-state h3 { margin: 0; color: var(--text); }
+.empty-state p { margin: 6px 0; }
+.favorite-error { color: var(--muted); font-size: 13px; }
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 52px;
+}
+.pagination button {
+  min-width: 35px;
+  min-height: 30px;
+  border-color: #6487dc44;
+  background: #1e2c4c;
+}
+.pagination button:hover:enabled { border-color: #939efa; }
+.pagination button:disabled { opacity: .54; cursor: default; }
+
+@media (max-width: 1200px) {
+  .filter-panel { grid-template: 'search category submit' auto 'tags tags tags' auto / minmax(0, 1fr) auto auto; }
+  .tag-filter { border: 0; padding-inline-start: 0; }
+}
+
+@media (max-width: 950px) {
+  .library-hero { background-position: center, calc(50% + 245px) center; }
+  .library-hero::before { opacity: .55; }
+  .library-results { margin-inline: 0; }
+  .game-results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 650px) {
+  .library-nav {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    height: auto;
+    min-height: 42px;
+    padding: 7px var(--gutter) 0;
+    row-gap: 3px;
+  }
+  .library-nav :deep(.nav-left) { display: contents; }
+  .library-nav :deep(.nav-right) { grid-column: 2; grid-row: 1; gap: 5px; }
+  .library-nav :deep(.nickname) { max-width: 70px; }
+  .library-nav :deep(.links) { grid-column: 1 / -1; justify-content: space-between; gap: 10px; }
+  .library-nav :deep(.links a) { height: 34px; font-size: 13px; }
+  .library-nav :deep(.brand) { font-size: 15px; }
+  .library-hero {
+    background-image:
+      linear-gradient(90deg, #111e3afc 6%, #142955d9 58%, #12295890),
+      url('../../assets/admin/sakura-banner.jpg');
+    background-position: center, calc(50% + 120px) center;
+  }
+  .library-hero::before { display: none; }
+  .hero-content { padding: 18px 0 22px; }
+  .library-stats { display: grid; grid-template-columns: 1fr 1fr; max-width: 275px; margin-top: 22px; }
+  .library-stat { gap: 0 8px; }
+  .filter-panel {
+    grid-template: 'search submit' auto 'category category' auto 'tags tags' auto / minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 13px;
+  }
+  .filter-group { min-height: 35px; padding-inline-start: 0; border: 0; }
+  .tag-filter { align-items: baseline; }
+  .search-field { gap: 8px; padding-inline: 11px; }
+  .search-button { gap: 6px; padding-inline: 10px; }
+  .library-results { margin-top: 26px; }
+  .library-body { padding-bottom: 64px; }
+  .toolbar-controls { gap: 6px; }
+  .segmented button { padding-inline: 6px; font-size: 12px; }
+  .view-switch button { min-width: 33px; font-size: 16px; }
+  .game-results { grid-template-columns: minmax(0, 1fr); }
+  .pagination { margin-top: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-results :deep(.game-card) { transition: none; }
+}

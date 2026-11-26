@@ -1,0 +1,8 @@
+【对应文件】
+MybatisPlusConfig.java
+
+【文件用途】
+让 MyBatis-Plus 查询支持数据库分页及总数统计。
+
+【具体实现】
+- 注册 MybatisPlusInterceptor，并添加 DbType.MYSQL 对应的 PaginationInnerInterceptor。

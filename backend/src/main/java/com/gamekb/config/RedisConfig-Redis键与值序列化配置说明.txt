@@ -1,0 +1,9 @@
+【对应文件】
+RedisConfig.java
+
+【文件用途】
+构造业务服务使用的 RedisTemplate。
+
+【具体实现】
+- 绑定 RedisConnectionFactory，用字符串序列化键和哈希键，使用 JSON 序列化值和哈希值。
+- 同一模板供令牌、攻略缓存等业务保存和恢复对象。

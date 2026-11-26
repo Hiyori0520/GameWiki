@@ -1,0 +1,9 @@
+【对应文件】
+AuthInterceptor.java
+
+【文件用途】
+检查接口调用者的登录状态、账号状态和角色。
+
+【具体实现】
+- 从 Authorization 提取令牌，从 Redis 取得用户标识，再从数据库读取用户并处理封禁状态。
+- 检查控制器方法或类上的 RequireRole，通过后写入 UserContext，请求结束清理上下文，校验失败时返回统一 JSON。

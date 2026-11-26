@@ -1,0 +1,9 @@
+【对应文件】
+AiAgentController.java
+
+【文件用途】
+对外提供普通问答与流式问答。
+
+【具体实现】
+- 两个 POST 路径使用 @Valid 校验 ChatRequest，普通问答调用服务后返回 Result<AiChatResponse>。
+- /chat/stream 声明 text/event-stream，创建 SseEmitter 并把输出交给 AiAgentService。

@@ -1,0 +1,82 @@
+:root {
+  color-scheme: dark;
+  --gw-bg: #111e3a;
+  --gw-nav: #101b31;
+  --gw-surface: #182749;
+  --gw-surface-raised: #202e51;
+  --gw-surface-hover: #27375b;
+  --gw-line: #2a3e63;
+  --gw-border: #7289d653;
+  --gw-border-strong: #7188d47d;
+  --gw-text: #f5f6ff;
+  --gw-muted: #bac5de;
+  --gw-subtle: #98aad0;
+  --gw-accent: #c4b1ff;
+  --gw-link: #b6cbff;
+  --gw-primary: #4a62ed;
+  --gw-primary-hover: #4866f5;
+  --gw-violet: #6854ff;
+  --gw-action-gradient: linear-gradient(135deg, var(--gw-primary), var(--gw-violet));
+  --gw-accent-tint: #756df22e;
+  --gw-info-tint: #5272f32e;
+  --gw-success: #8bd9b8;
+  --gw-success-tint: #4e95672e;
+  --gw-warning: #ffd477;
+  --gw-warning-tint: #d99b2b26;
+  --gw-danger: #ff9eb1;
+  --gw-danger-tint: #d05b752b;
+  --gw-shadow: 0 8px 24px #080e2073;
+}
+
+html, body, #app {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--gw-text);
+  background: var(--gw-bg);
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gw-accent);
+  outline-offset: 3px;
+}
+
+html.dark {
+  --el-bg-color: var(--gw-surface);
+  --el-bg-color-page: var(--gw-bg);
+  --el-bg-color-overlay: var(--gw-surface-raised);
+  --el-text-color-primary: var(--gw-text);
+  --el-text-color-regular: var(--gw-muted);
+  --el-text-color-secondary: var(--gw-subtle);
+  --el-text-color-placeholder: var(--gw-subtle);
+  --el-border-color: var(--gw-border);
+  --el-border-color-light: var(--gw-line);
+  --el-border-color-lighter: var(--gw-line);
+  --el-border-color-extra-light: var(--gw-line);
+  --el-fill-color: var(--gw-surface-raised);
+  --el-fill-color-light: var(--gw-surface-hover);
+  --el-fill-color-lighter: var(--gw-surface);
+  --el-fill-color-extra-light: var(--gw-nav);
+  --el-fill-color-blank: var(--gw-surface);
+  --el-color-primary: var(--gw-accent);
+  --el-color-primary-light-3: color-mix(in srgb, var(--gw-accent), var(--gw-bg) 30%);
+  --el-color-primary-light-5: color-mix(in srgb, var(--gw-accent), var(--gw-bg) 50%);
+  --el-color-primary-light-7: color-mix(in srgb, var(--gw-accent), var(--gw-bg) 70%);
+  --el-color-primary-light-8: color-mix(in srgb, var(--gw-accent), var(--gw-bg) 80%);
+  --el-color-primary-light-9: color-mix(in srgb, var(--gw-accent), var(--gw-bg) 90%);
+  --el-color-primary-dark-2: var(--gw-link);
+  --el-color-success: var(--gw-success);
+  --el-color-warning: var(--gw-warning);
+  --el-color-danger: var(--gw-danger);
+  --el-color-error: var(--gw-danger);
+}
+
+.el-button--primary:not(.is-plain, .is-text, .is-link) {
+  --el-button-bg-color: var(--gw-primary);
+  --el-button-border-color: var(--gw-primary);
+  --el-button-hover-bg-color: var(--gw-primary-hover);
+  --el-button-hover-border-color: var(--gw-primary-hover);
+  --el-button-active-bg-color: var(--gw-violet);
+  --el-button-active-border-color: var(--gw-violet);
+}

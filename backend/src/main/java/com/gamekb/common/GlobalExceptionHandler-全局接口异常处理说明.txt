@@ -1,0 +1,9 @@
+【对应文件】
+GlobalExceptionHandler.java
+
+【文件用途】
+把控制器请求链中的业务异常和参数异常整理成统一响应。
+
+【具体实现】
+- 用 @RestControllerAdvice 和各类 @ExceptionHandler 处理业务失败、字段校验、绑定、缺参数及类型错误。
+- 从异常提取业务码和可显示消息，对未分类异常执行日志和兜底响应。

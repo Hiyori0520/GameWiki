@@ -1,0 +1,9 @@
+【对应文件】
+CorsConfig.java
+
+【文件用途】
+允许配置中的前端来源跨域调用后端。
+
+【具体实现】
+- 从 GAMEWIKI_CORS_ALLOWED_ORIGINS 读取来源列表，默认列出 localhost 与 127.0.0.1 的 Vite 开发端口。
+- 通过 addCorsMappings 给 MVC 路径应用来源、方法、请求头和凭证相关设置。

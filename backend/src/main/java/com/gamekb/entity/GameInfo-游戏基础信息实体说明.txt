@@ -1,0 +1,9 @@
+【对应文件】
+GameInfo.java
+
+【文件用途】
+将基础游戏记录映射到 game_info 表。
+
+【具体实现】
+- 使用 MyBatis-Plus 映射游戏名、分类、平台、描述和创建时间。
+- 基础字典、攻略关联查询和后台统计通过 GameInfoMapper 读取这些字段。

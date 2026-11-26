@@ -1,0 +1,24 @@
+# 本地私有配置模板
+# 使用方法：复制本文件为 application-local.yml，填入自己的真实值
+# application-local.yml 已被 .gitignore 排除，请勿提交到仓库
+#
+# PowerShell:
+#   Copy-Item src/main/resources/application-local.yml.example src/main/resources/application-local.yml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 端口按本机实际 MySQL 端口填写（本项目成员机器有 3306 和 3307 两种情况）
+    url: jdbc:mysql://localhost:3306/ai_game_kb?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 你的数据库密码
+
+  ai:
+    openai:
+      # 兼容 DeepSeek / 通义千问等 OpenAI 协议接口
+      base-url: https://api.deepseek.com
+      api-key: 你的APIKey
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.7

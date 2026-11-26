@@ -1,0 +1,9 @@
+【对应文件】
+.gitignore
+
+【文件用途】
+记录前端目录内的 Git 忽略范围。
+
+【具体实现】
+- 匹配 npm 等包管理器的日志、node_modules、Vite 产物和本机配置。
+- 忽略常见编辑器和系统元数据，并用 !.vscode/extensions.json 为扩展推荐文件设置例外。

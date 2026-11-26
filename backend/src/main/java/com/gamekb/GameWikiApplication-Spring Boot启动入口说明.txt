@@ -1,0 +1,9 @@
+【对应文件】
+GameWikiApplication.java
+
+【文件用途】
+启动后端应用并提示本地接口文档位置。
+
+【具体实现】
+- 通过 @SpringBootApplication 启用自动配置，用 @MapperScan 扫描 com.gamekb.mapper。
+- main 调用 SpringApplication.run 后从运行环境取得端口，再打印 Knife4j、Swagger UI 和 OpenAPI JSON 的访问地址。

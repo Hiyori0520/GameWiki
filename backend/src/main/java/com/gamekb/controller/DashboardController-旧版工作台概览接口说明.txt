@@ -1,0 +1,9 @@
+【对应文件】
+DashboardController.java
+
+【文件用途】
+为早期工作台提供业务计数、攻略分布和热门排行。
+
+【具体实现】
+- 用 Mapper 统计游戏、装备和用户数量，结合攻略服务统计或聚合攻略。
+- 将多个指标放进同一个概览响应，通过 /api/dashboard/overview 提供给旧版 Dashboard.vue。

@@ -1,0 +1,9 @@
+【对应文件】
+avatar-admin.jpg
+
+【用途说明】
+AdminLayout.vue 顶栏管理员菜单使用的固定演示头像。
+
+【具体实现】
+- AdminLayout 和 AdminProfile 通过模块导入取得 JPEG 地址，分别在顶栏账号菜单和管理员资料页面使用。
+- 文件采用 JPEG 格式，原始尺寸为 36 × 40 像素。

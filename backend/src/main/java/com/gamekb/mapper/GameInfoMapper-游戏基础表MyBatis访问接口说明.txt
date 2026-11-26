@@ -1,0 +1,8 @@
+【对应文件】
+GameInfoMapper.java
+
+【文件用途】
+读写 game_info 中的基础游戏记录。
+
+【具体实现】
+- 继承 BaseMapper<GameInfo>，为基础资料接口提供条件列表和写入，为工作台提供计数。

@@ -1,0 +1,9 @@
+【对应文件】
+AiToolsConfig.java
+
+【文件用途】
+向 Spring AI 暴露攻略检索与装备数值查询两个工具。
+
+【具体实现】
+- 用 SearchRequest 接收关键词，searchGameGuideTool 调用攻略服务获取已公开记录。
+- queryItemStatsTool 通过 GameItemStatsMapper 查询装备资料，两个 Function Bean 将查询结果整理成模型可读的文本。
