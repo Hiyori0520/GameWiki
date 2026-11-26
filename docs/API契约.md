@@ -200,14 +200,78 @@ Authorization: <token>
 | DELETE | `/api/ai/sessions/{sessionId}` | 删除会话及其消息 |
 | POST | `/api/ai/summary` | 🚧 待开发：生成攻略摘要（管理员确认后保存） |
 
-**成员 D**
+**成员 D（管理端与后台接口，已完成，统一前缀 `/api/admin/v1`，均要求 `ADMIN` 角色；分页参数为 `page` / `pageSize`，返回 `{ records, total, page, pageSize }`）**
+
+*会话、偏好与后台总览*
 
 | 方法 | 路径 | 说明 |
 | --- | --- | --- |
-| GET | `/api/admin/guides` | 全量攻略（含待审核），`page` `size` `auditStatus` `keyword` |
-| PUT | `/api/admin/guides/{id}/audit` | 审核，`{auditStatus}` 1 上架 / 2 驳回 |
-| PUT | `/api/admin/users/{id}/status` | 启用/禁用用户，`{status}` |
+| GET | `/api/admin/v1/session` | 当前管理员身份、昵称及 17 项细粒度权限列表 |
+| GET | `/api/admin/v1/preferences` | 读取管理员偏好（`sidebarCollapsed` / `pageSize` / `dashboardPeriod`） |
+| PUT | `/api/admin/v1/preferences` | 保存管理员偏好（`pageSize` ∈ 20/50/100，`dashboardPeriod` ∈ 7/30/90） |
+| GET | `/api/admin/v1/dashboard/summary` | 游戏/攻略/用户/内容总量、近 7 日增量与待审核攻略数 |
+| GET | `/api/admin/v1/dashboard/trends` | 7/30/90 天游戏与攻略新增趋势（`days`） |
+| GET | `/api/admin/v1/dashboard/game-distribution` | 游戏主分类数量分布 |
+| GET | `/api/admin/v1/dashboard/recent` | 最新内容列表（`type`=games/guides/users，`limit`） |
+| GET | `/api/admin/v1/dashboard/logs` | 管理员操作审计日志（`limit`） |
+| GET | `/api/admin/v1/dashboard/health` | API 与数据库健康状态 |
+
+*游戏管理与批量导入导出*
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | `/api/admin/v1/games` | 游戏管理分页查询（关键词、分类、平台、厂商、状态、排序） |
+| GET | `/api/admin/v1/games/options` | 分类、平台与厂商筛选项 |
+| GET | `/api/admin/v1/games/stats` | 游戏各状态统计与近 7 日增量 |
+| GET | `/api/admin/v1/games/{id}` | 游戏管理详情（含乐观锁 `version`） |
+| POST | `/api/admin/v1/games` | 新增游戏 |
+| PUT | `/api/admin/v1/games/{id}` | 编辑游戏资料 |
+| DELETE | `/api/admin/v1/games/{id}` | 软删除游戏（有关联攻略时拦截） |
+| POST | `/api/admin/v1/games/{id}/{action}` | 游戏状态流转：`submit-review` / `publish` / `off-shelf` / `reject` |
+| POST | `/api/admin/v1/games/batch` | 批量操作（`publish` / `off-shelf` / `delete` / `add-tags` / `set-categories`，最多 1000 条） |
+| POST | `/api/admin/v1/uploads/images` | 图片上传（≤1 MB，JPG/PNG/WebP 魔数校验），返回 `/catalog/media/{id}` |
+| GET | `/catalog/media/{id}` | 读取已上传图片二进制内容（公开缓存，非 `/api/admin/v1` 前缀） |
+| POST | `/api/admin/v1/imports/games` | 上传 CSV/XLSX 批量导入游戏（1–1000 条） |
+| POST | `/api/admin/v1/exports/games` | 按勾选 ID 或查询条件创建游戏导出任务 |
+| GET | `/api/admin/v1/{imports\|exports}/games/{id}` | 查询当前管理员导入/导出任务状态与汇总统计 |
+| GET | `/api/admin/v1/{imports\|exports}/games/{id}/download` | 下载导入错误报告或导出结果数据 |
+
+*攻略管理、审核台与分类标签*
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | `/api/admin/v1/guides` | 全量攻略检索、筛选、排序与分页 |
+| GET | `/api/admin/v1/guide-reviews` | 待审核攻略队列分页（审核台） |
+| GET | `/api/admin/v1/guides/stats` | 攻略各状态数量、今日/本周新增、本周发布与总阅读量 |
+| GET | `/api/admin/v1/guides/export` | 按条件或审核队列导出攻略 JSON |
+| POST | `/api/admin/v1/guides/import` | 事务批量导入攻略（1–500 条） |
+| GET | `/api/admin/v1/guides/{id}` | 攻略详情（`forEdit=true` 返回可编辑修订内容） |
+| POST | `/api/admin/v1/guides` | 新建攻略 |
+| PUT | `/api/admin/v1/guides/{id}` | 编辑攻略（已发布攻略编辑进入待审修订版本） |
+| DELETE | `/api/admin/v1/guides/{id}` | 删除攻略 |
+| POST | `/api/admin/v1/guides/{id}/{action}` | 攻略状态流转：`submit-review` / `off-shelf` |
+| POST | `/api/admin/v1/guide-reviews/{id}/{action}` | 攻略审核：`approve` / `reject`（可附 `reason`） |
+| GET | `/api/admin/v1/guide-{categories\|tags}` | 查询攻略分类或标签字典 |
+| POST | `/api/admin/v1/guide-{categories\|tags}` | 新增攻略分类或标签 |
+| DELETE | `/api/admin/v1/guide-{categories\|tags}/{id}` | 删除攻略分类或标签 |
+
+*用户管理与账号治理*
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | `/api/admin/v1/users` | 用户列表检索、角色/会员/状态筛选与分页 |
+| GET | `/api/admin/v1/users/{id}` | 用户详情（含扩展资料、脱敏邮箱与封禁历史） |
+| GET | `/api/admin/v1/users/stats` | 用户总量、近 7 日新增/活跃、VIP 与封禁统计 |
+| GET | `/api/admin/v1/users/growth` | 7/30/90 天注册增长趋势（`days`） |
+| GET | `/api/admin/v1/users/distribution` | 会员等级分布 |
+| GET | `/api/admin/v1/users/active-ranking` | 活跃贡献排行 |
+| GET | `/api/admin/v1/user-levels` | 用户成长等级规则列表 |
+| PATCH | `/api/admin/v1/users/{id}/profile` | 管理员修改用户昵称 |
+| POST | `/api/admin/v1/users/{id}/ban` | 封禁用户（支持原因与过期时间）并写封禁审计日志 |
+| POST | `/api/admin/v1/users/{id}/unban` | 解封用户并写审计日志 |
 | POST | `/api/admin/v1/users/{id}/password` | 管理员重置密码，body 可选 `{newPassword}`；不传则生成 10 位随机密码，明文仅在本次响应返回 |
+
+> 完整管理端页面、权限矩阵与共享目录说明见 [`docs/管理端与后台接口说明.md`](管理端与后台接口说明.md)。
 
 ---
 

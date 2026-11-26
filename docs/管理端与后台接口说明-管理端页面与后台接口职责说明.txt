@@ -1,0 +1,9 @@
+【对应文件】
+管理端与后台接口说明.md
+
+【文件用途】
+记录 GameWiki 管理端 10 个页面、/api/admin/v1 后台接口、审核台、用户管理、共享目录数据层及关联交付明细。
+
+【具体实现】
+- 梳理管理端页面路由、17 项权限映射、统一布局、7 个后台通用组件和 5 个 API 封装模块。
+- 列出 CatalogAdminController、CatalogFilesController、CatalogController 接口及 02_shared_catalog.sql 扩展表结构。
